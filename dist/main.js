@@ -109,13 +109,43 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/Modules/Dom.js":
+/*!****************************!*\
+  !*** ./src/Modules/Dom.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst Dom = (Name, Score) => {\r\n\tconst listBox = document.querySelector('#list-box');\r\n\tconst listItem = document.createElement('li');\r\n\tlistItem.textContent = Name + ': ' + Score;\r\n\r\n\tlistItem.id = 'list-item';\r\n\tlistItem.className = 'list-item';\r\n\r\n\tlistBox.appendChild(listItem);\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dom);\n\n//# sourceURL=webpack://webpack/./src/Modules/Dom.js?");
+
+/***/ }),
+
+/***/ "./src/Modules/Render.js":
+/*!*******************************!*\
+  !*** ./src/Modules/Render.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ \"./src/index.js\");\n/* harmony import */ var _Dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dom */ \"./src/Modules/Dom.js\");\n\r\n\r\n\r\nconst render = () => {\r\n  ___WEBPACK_IMPORTED_MODULE_0__.array.forEach((Obj) => {\r\n    (0,_Dom__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(Obj.Name, Obj.Score);\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (render);\n\n//# sourceURL=webpack://webpack/./src/Modules/Render.js?");
+
+/***/ }),
+
+/***/ "./src/Modules/updateArray.js":
+/*!************************************!*\
+  !*** ./src/Modules/updateArray.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ \"./src/index.js\");\n\r\n\r\nconst updateArray = (param1, Param2) => {\r\n    ___WEBPACK_IMPORTED_MODULE_0__.array.push({\r\n        Name: param1.value,\r\n        Score: Param2.value\r\n    });\r\n    localStorage.setItem('Data', JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.array));\r\n    param1.value = '';\r\n    Param2.value = '';\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (updateArray);\n\n//# sourceURL=webpack://webpack/./src/Modules/updateArray.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\r\n\n\n//# sourceURL=webpack://webpack/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   array: () => (/* binding */ array)\n/* harmony export */ });\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _Modules_updateArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modules/updateArray */ \"./src/Modules/updateArray.js\");\n/* harmony import */ var _Modules_Render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modules/Render */ \"./src/Modules/Render.js\");\n\r\n\r\n\r\n\r\nconst array = JSON.parse(localStorage.getItem('Data')) || [];\r\n\r\nconst nameInput = document.querySelector('#name');\r\nconst scoreInput = document.querySelector('#score');\r\nconst submitBtn = document.querySelector('#submit-btn');\r\n\r\nsubmitBtn.addEventListener('click', () => {\r\n  if (nameInput.value && scoreInput.value) {\r\n    (0,_Modules_updateArray__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(nameInput, scoreInput);\r\n    (0,_Modules_Render__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\r\n  }\r\n});\r\n\r\n(0,_Modules_Render__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\r\n\r\n\r\n\n\n//# sourceURL=webpack://webpack/./src/index.js?");
 
 /***/ })
 
