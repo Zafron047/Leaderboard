@@ -120,7 +120,7 @@ npm test / npx jest
 ### Deployment:
 
 Click here:
-[Deployed Link](https://zafron047.github.io/Leaderboard/)
+[Deployed Link](https://zafron047.github.io/Leaderboard/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
