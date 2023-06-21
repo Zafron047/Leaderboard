@@ -1,6 +1,6 @@
 import './style.css';
-import updateArray from './Modules/updateArray';
-import render from './Modules/Render';
+import updateArray from './Modules/updateArray.js';
+import render from './Modules/Render.js';
 
 const array = JSON.parse(localStorage.getItem('Data')) || [];
 
@@ -10,11 +10,9 @@ const submitBtn = document.querySelector('#submit-btn');
 
 submitBtn.addEventListener('click', () => {
   if (nameInput.value && scoreInput.value) {
-    updateArray(nameInput, scoreInput);
-    render();
+    updateArray(array, nameInput, scoreInput);
+    render(array);
   }
 });
 
-render();
-
-export { array };
+render(array);
