@@ -3,9 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wbpack Boilerplate</title>
+    <title>Leaderboard</title>
   </head>
   <body>
-    <h1>New Project!</h1>
+    <h1>Leaderboard</h1>
+    <main class="main">
+      <div class="list">
+        <div class="listHeader">
+          <h2>Recent scores</h2>
+          <button class="refresh-btn" type="submit">Refresh</button>
+        </div>
+        <ul id="list-box" class="list-box">
+        </ul>
+      </div>
+  
+      <div class="input">
+        <h3>Add your score</h3>
+        <input id="name" type="text">
+        <input id="score" type="text">
+        <button id="submit-btn" class="submit-btn" type="submit">Submit</button>
+      </div>
+    </main>
+    <script src="dist/bundle.js"></script>
   </body>
 </html>
