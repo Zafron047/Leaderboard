@@ -1,10 +1,10 @@
-import Dom from './Dom.js';
+import dom from './Dom.js';
 
 const render = (param) => {
   const listBox = document.querySelector('#list-box');
   listBox.textContent = '';
   param.forEach((Obj) => {
-    Dom(Obj.Name, Obj.Score);
+    dom(Obj.user, Obj.score);
   });
 };
 

@@ -115,27 +115,37 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst Dom = (Name, Score) => {\n  const listBox = document.querySelector('#list-box');\n  const listItem = document.createElement('li');\n  listItem.textContent = `${Name}: ${Score}`;\n\n  listItem.id = 'list-item';\n  listItem.className = 'list-item';\n\n  listBox.appendChild(listItem);\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dom);\n\n//# sourceURL=webpack://webpack/./src/Modules/Dom.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst Dom = (user, score) => {\r\n  // const { user, score } = Obj;\r\n  const listBox = document.querySelector('#list-box');\r\n  const listItem = document.createElement('li');\r\n  listItem.textContent = `${user}: ${score}`;\r\n  listItem.id = 'list-item';\r\n  listItem.className = 'list-item';\r\n\r\n  listBox.appendChild(listItem);\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dom);\n\n//# sourceURL=webpack://webpack/./src/Modules/Dom.js?");
 
 /***/ }),
 
-/***/ "./src/Modules/Render.js":
+/***/ "./src/Modules/getApiResponse.js":
+/*!***************************************!*\
+  !*** ./src/Modules/getApiResponse.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _render_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render.js */ \"./src/Modules/render.js\");\n\r\nconst getApiResponse = async (url, id) => {\r\n  try {\r\n    const response = await fetch(`${url}${id}/scores`, {\r\n      method: 'GET',\r\n      headers: {\r\n        'Content-type': 'application/json; charset=UTF-8',\r\n      },\r\n    });\r\n    const apiResponse = await response.json();\r\n    (0,_render_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(apiResponse.result);\r\n  } catch (error) {\r\n    console.error('Error', error);\r\n  }\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getApiResponse);\n\n//# sourceURL=webpack://webpack/./src/Modules/getApiResponse.js?");
+
+/***/ }),
+
+/***/ "./src/Modules/render.js":
 /*!*******************************!*\
-  !*** ./src/Modules/Render.js ***!
+  !*** ./src/Modules/render.js ***!
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _Dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dom.js */ \"./src/Modules/Dom.js\");\n\n\nconst render = (param) => {\n  const listBox = document.querySelector('#list-box');\n  listBox.textContent = '';\n  param.forEach((Obj) => {\n    (0,_Dom_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(Obj.Name, Obj.Score);\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (render);\n\n//# sourceURL=webpack://webpack/./src/Modules/Render.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _Dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dom.js */ \"./src/Modules/Dom.js\");\n\r\n\r\nconst render = (param) => {\r\n  const listBox = document.querySelector('#list-box');\r\n  listBox.textContent = '';\r\n  param.forEach((Obj) => {\r\n    // const { user, score } = Obj;\r\n    (0,_Dom_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(Obj.user, Obj.score);\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (render);\n\n//# sourceURL=webpack://webpack/./src/Modules/render.js?");
 
 /***/ }),
 
-/***/ "./src/Modules/updateArray.js":
-/*!************************************!*\
-  !*** ./src/Modules/updateArray.js ***!
-  \************************************/
+/***/ "./src/Modules/setApi.js":
+/*!*******************************!*\
+  !*** ./src/Modules/setApi.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst updateArray = (bArray, param1, Param2) => {\n  bArray.push({\n    Name: param1.value,\n    Score: Param2.value,\n  });\n  localStorage.setItem('Data', JSON.stringify(bArray));\n  param1.value = '';\n  Param2.value = '';\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (updateArray);\n\n//# sourceURL=webpack://webpack/./src/Modules/updateArray.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst setApi = async (url, id, obj) => {\r\n  try {\r\n    const response = await fetch(`${url}${id}/scores/`, {\r\n      method: 'POST',\r\n      body: JSON.stringify(obj),\r\n      headers: {\r\n        'Content-type': 'application/json; charset=UTF-8',\r\n      },\r\n    })\r\n    const json = await response.json();\r\n    return json;\r\n  } catch (error) {\r\n    console.error('error', error);\r\n  }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setApi);\r\n\n\n//# sourceURL=webpack://webpack/./src/Modules/setApi.js?");
 
 /***/ }),
 
@@ -145,7 +155,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _Modules_updateArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modules/updateArray.js */ \"./src/Modules/updateArray.js\");\n/* harmony import */ var _Modules_Render_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modules/Render.js */ \"./src/Modules/Render.js\");\n\n\n\n\nconst array = JSON.parse(localStorage.getItem('Data')) || [];\n\nconst nameInput = document.querySelector('#name');\nconst scoreInput = document.querySelector('#score');\nconst submitBtn = document.querySelector('#submit-btn');\n\nsubmitBtn.addEventListener('click', () => {\n  if (nameInput.value && scoreInput.value) {\n    (0,_Modules_updateArray_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(array, nameInput, scoreInput);\n    (0,_Modules_Render_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(array);\n  }\n});\n\n(0,_Modules_Render_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(array);\n\n\n//# sourceURL=webpack://webpack/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _Modules_setApi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modules/setApi.js */ \"./src/Modules/setApi.js\");\n/* harmony import */ var _Modules_getApiResponse_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modules/getApiResponse.js */ \"./src/Modules/getApiResponse.js\");\n\r\n\r\n\r\n\r\nconst url =\r\n  'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';\r\nconst id = 'Fpg6HrLPFBcjXwpU9z09';\r\n\r\nconst refreshBtn = document.querySelector('#refresh-btn');\r\nrefreshBtn.addEventListener('click', () => {\r\n  (0,_Modules_getApiResponse_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(url, id);\r\n});\r\n\r\nconst submitBtn = document.querySelector('#submit-btn');\r\nsubmitBtn.addEventListener('click', () => {\r\n  const nameInput = document.querySelector('#name').value;\r\n  const scoreInput = document.querySelector('#score').value;\r\n  const obj = { user: nameInput, score: scoreInput };\r\n\r\n  if (nameInput && !isNaN(scoreInput)) {\r\n    (0,_Modules_setApi_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(url, id, obj)\r\n    document.querySelector('#name').value = '';\r\n    document.querySelector('#score').value = '';\r\n  }\r\n});\n\n//# sourceURL=webpack://webpack/./src/index.js?");
 
 /***/ })
 
