@@ -1,18 +1,24 @@
 import './style.css';
-import updateArray from './Modules/updateArray.js';
-import render from './Modules/Render.js';
+import setApi from './Modules/setApi.js';
+import getApiResponse from './Modules/getApiResponse.js';
 
-const array = JSON.parse(localStorage.getItem('Data')) || [];
+const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
+const id = 'Fpg6HrLPFBcjXwpU9z09';
 
-const nameInput = document.querySelector('#name');
-const scoreInput = document.querySelector('#score');
-const submitBtn = document.querySelector('#submit-btn');
-
-submitBtn.addEventListener('click', () => {
-  if (nameInput.value && scoreInput.value) {
-    updateArray(array, nameInput, scoreInput);
-    render(array);
-  }
+const refreshBtn = document.querySelector('#refresh-btn');
+refreshBtn.addEventListener('click', () => {
+  getApiResponse(url, id);
 });
 
-render(array);
+const submitBtn = document.querySelector('#submit-btn');
+submitBtn.addEventListener('click', () => {
+  const nameInput = document.querySelector('#name').value;
+  const scoreInput = document.querySelector('#score').value;
+  const obj = { user: nameInput, score: scoreInput };
+
+  if (nameInput && !Number.isNaN(Number(scoreInput))) {
+    setApi(url, id, obj);
+    document.querySelector('#name').value = '';
+    document.querySelector('#score').value = '';
+  }
+});
