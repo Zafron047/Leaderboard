@@ -10,7 +10,7 @@ const dom = (user, score) => {
   } else {
     listItem.style.backgroundColor = 'rgba(173, 216, 230, 0.404)';
   }
-  
+
   listBox.appendChild(listItem);
 };
 
